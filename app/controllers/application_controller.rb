@@ -34,5 +34,32 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  # include other CRUD functionalities
+  post "/aspects" do
+    aspect = Aspect.create(
+      name: params[:name]
+    )
+    aspect.to_json
+  end
+
+  post "/strategies" do
+    strategy = Strategy.create(
+      name: params[:name]
+    )
+    strategy.to_json
+  end
+
+  patch "strategies/:id" do
+    strategy = Strategy.find(params[:id])
+    strategy.update(
+      name: params[:name]
+    )
+    strategy.to_json
+  end
+
+  delete "strategies/:id" do 
+    strategy = Strategy.find(params[:id])
+    strategy.destroy
+  end
 
 end
