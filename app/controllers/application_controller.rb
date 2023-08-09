@@ -34,7 +34,7 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  # include other CRUD functionalities
+  # include other CRUD routes
   post "/aspects" do
     aspect = Aspect.create(
       name: params[:name]
