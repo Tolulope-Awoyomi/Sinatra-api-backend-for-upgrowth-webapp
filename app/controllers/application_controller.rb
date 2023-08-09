@@ -15,4 +15,15 @@ class ApplicationController < Sinatra::Base
     strategies.to_json(include: :aspect)
   end
 
+  # include show routes
+  get "/aspects/:id" do
+    aspects = Aspect.find_by(id: params[:id])
+    aspects.to_json(include: :strategies)
+  end
+
+  get "/strategies/:id" do
+    strategies = Strategy.find_by(id: params[:id])
+    strategies.to_json(include: :aspect)
+  end
+
 end
