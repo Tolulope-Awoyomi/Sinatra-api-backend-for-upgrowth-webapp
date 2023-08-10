@@ -10,29 +10,29 @@ class ApplicationController < Sinatra::Base
     aspects.to_json(include: :strategies)
   end
 
-  get "/strategies" do 
-    strategies = Strategy.all
-    strategies.to_json(include: :aspect)
-  end
+  # get "/strategies" do 
+  #   strategies = Strategy.all
+  #   strategies.to_json(include: :aspect)
+  # end
 
-  # include show routes
-  get "/aspects/:id" do
-    aspect = Aspect.find_by(id: params[:id])
-    if aspect
-    aspect.to_json(include: :strategies)
-    else
-      "404 - not found"
-    end
-  end
+  # # include show routes
+  # get "/aspects/:id" do
+  #   aspect = Aspect.find_by(id: params[:id])
+  #   if aspect
+  #   aspect.to_json(include: :strategies)
+  #   else
+  #     "404 - not found"
+  #   end
+  # end
 
-  get "/strategies/:id" do
-    strategy = Strategy.find_by(id: params[:id])
-    if strategy
-    strategy.to_json(include: :aspect)
-    else 
-      "404 - not found"
-    end
-  end
+  # get "/strategies/:id" do
+  #   strategy = Strategy.find_by(id: params[:id])
+  #   if strategy
+  #   strategy.to_json(include: :aspect)
+  #   else 
+  #     "404 - not found"
+  #   end
+  # end
 
   # include other CRUD routes
   post "/aspects" do
@@ -43,7 +43,8 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/strategies" do
-    strategy = Strategy.create(
+    aspect = Aspect.find(params[:aspect_id])
+    strategy = aspect.strategies.create(
       name: params[:name]
     )
     strategy.to_json
