@@ -50,7 +50,7 @@ class ApplicationController < Sinatra::Base
     strategy.to_json
   end
 
-  patch "strategies/:id" do
+  patch "/strategies/:id" do
     strategy = Strategy.find(params[:id])
     strategy.update(
       name: params[:name]
@@ -58,9 +58,10 @@ class ApplicationController < Sinatra::Base
     strategy.to_json
   end
 
-  delete "strategies/:id" do 
+  delete "/strategies/:id" do 
     strategy = Strategy.find(params[:id])
     strategy.destroy
   end
 
 end
+
