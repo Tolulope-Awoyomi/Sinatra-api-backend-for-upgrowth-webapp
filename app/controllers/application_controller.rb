@@ -14,7 +14,7 @@ class ApplicationController < Sinatra::Base
     aspect = Aspect.create(
       name: params[:name]
     )
-    aspect.to_json
+    aspect.to_json(include: :strategies)
   end
 
   post "/strategies" do
